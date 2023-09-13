@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTask, deleteTask, updateTask, getTask } from '../api/tasks.api';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 export function TaskFormPage() {
   const {
@@ -15,8 +16,13 @@ export function TaskFormPage() {
   const params = useParams();
 
   const onSubmit = handleSubmit(async (data) => {
-    if (params.id) await updateTask(params.id, data);
-    else await createTask(data);
+    if (params.id) {
+      await updateTask(params.id, data);
+      toast.success('task updated !!!');
+    } else {
+      await createTask(data);
+      toast.success('task created <3');
+    }
 
     navigate('/tasks');
   });
