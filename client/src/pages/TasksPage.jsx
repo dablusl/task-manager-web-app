@@ -1,5 +1,7 @@
+import { TasksList } from '../components/TasksList'
+
 export function TasksPage() {
   return (
-    <h1>Hello World</h1>
+    <TasksList />
   )
 }
